@@ -16,8 +16,24 @@ logging.getLogger("conductor").setLevel(logging.WARNING)
 
 assistant = Agent(
     name="personal_assistant",
-    model="openai/gpt-5.5-instant",
-    # model="openai/gpt-4o-mini"
+    # openai
+    # model="openai/gpt-4o",
+    # model="openai/gpt-4o-mini",
+    # model="openai/gpt-4-turbo",
+    # model="openai/o1",
+    # model="openai/o1-mini",
+    # model="openai/o3-mini",
+
+    # mistral
+    # model="mistral/mistral-large-latest",
+    # model="mistral/mistral-medium-latest",
+    # model="mistral/mistral-small-latest",
+    # model="mistral/open-mixtral-8x7b",
+
+    # gemini
+    model="google_gemini/gemini-1.5-flash",
+    # model="google_gemini/gemini-1.5-pro",
+    # model="google_gemini/gemini-2.0-flash",
     instructions=(
         "You are a concise personal assistant. Use tools when they help."
         "and remember useful user details across turns"
