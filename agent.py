@@ -21,6 +21,8 @@ def get_current_time() -> str:
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
+conversation_memory = ConversationMemory(max_messages=50)
+
 assistant = Agent(
     name="personal_assistant",
     # openai
@@ -45,7 +47,8 @@ assistant = Agent(
         "You are a concise personal assistant. Use tools when they help."
         "and remember useful user details across turns"
     ),
-    tools=[get_current_time]
+    tools=[get_current_time],
+    memory=conversation_memory
 )
 
 # main entry point of the app
@@ -61,4 +64,4 @@ if __name__ == "__main__":
                 continue
 
             result = run(assistant, prompt, runtime=runtime)
-            print(f"Assistant: {result}")
+            print(f"Assistant: {result.output.get('result')}")
