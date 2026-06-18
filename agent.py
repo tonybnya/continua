@@ -64,4 +64,9 @@ if __name__ == "__main__":
                 continue
 
             result = run(assistant, prompt, runtime=runtime)
-            print(f"Assistant: {result.output.get('result')}")
+            response = result.output.get('result')
+
+            conversation_memory.add_user_message(prompt)
+            conversation_memory.add_assistant_message(response)
+
+            print(f"Assistant: {response}")
