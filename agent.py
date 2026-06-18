@@ -16,7 +16,7 @@ logging.getLogger("conductor").setLevel(logging.WARNING)
 
 assistant = Agent(
     name="personal_assistant",
-    model="openai/gpt-5.4-mini",
+    model="openai/gpt-5.5-instant",
     # model="openai/gpt-4o-mini"
     instructions=(
         "You are a concise personal assistant. Use tools when they help."
@@ -24,3 +24,18 @@ assistant = Agent(
     ),
     tools=[]
 )
+
+# main entry point of the app
+if __name__ == "__main__":
+    print("Starting agent...")
+
+    with AgentRuntime() as runtime:
+        while True:
+            prompt = input("You: ").strip()
+            if prompt.lower() == "q":
+                break
+            if not prompt:
+                continue
+
+            result = run(assistant, prompt, runtime=runtime)
+            print(f"Assistant: {result}")
